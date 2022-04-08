@@ -1,6 +1,7 @@
 # Escrow Payment system
 
-Design a system for Escrow payment (What is escrow: https://www.investopedia.com/terms/e/escrow.asp)
+Design a system for [Escrow payment](https://www.investopedia.com/terms/e/escrow.asp)
+
 1. We have three systems: sender system, escrow system and receiver system. Sender system transfers the fund from its own account in escrow system to receiver’s escrow account.
 2. Sender then notifies receiver of the transaction
 3. Receiver then checks with the escrow system for funds
@@ -11,14 +12,41 @@ Interview Tasks:
 2. Design REST APIs for system interactions
  
 
+## Rough Work
 
-Escrow - System
+[Design Diagram](./payment-system.drawio)
 
-- POST /make-payment
+Escrow System
+
+``` bash
+- POST /payment
         {
             senderId,
             recieverId,
             amount
         }
 
-- 
+- POST /verify
+        {
+            senderId,
+            recieverId,
+            amount
+        }
+
+- GET /payment
+        {
+            senderId,
+            recieverId
+        }
+```
+
+Receiver System 
+
+``` bash
+- POST /notify-payment
+        {
+            senderId,
+            recieverId,
+            amount
+        }
+```
